@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import HeaderComponent from './Components/HeaderComponent/HeaderComponent';
 import NavbarDark from './Components/Navbar/NavbarDark';
 import ImageCarousel from './Components/ImageCarousel/ImageCarousel';
-
+import ProductGroup from './Components/ProductGroup/ProductGroup';
 
 
 
@@ -16,18 +16,6 @@ const handleBurgerClick = () => {
   })
 }
 
-// const handleCarousel = () => {
-//   const images = Array.from(document.querySelectorAll(".carousel-image"));
-//   setTimeout(() => {
-//     images[count].classList.remove('active');
-//     count++;
-//     images[count === images.length - 1 ? 0 : count].classList.add('active');
-//     console.log(count);
-//     handleCarousel();
-//   }, 3000);
-// }
-
-
 function App() {
   useEffect(() => {
     let activeCount = 0;
@@ -35,7 +23,9 @@ function App() {
 
     const handleCarousel = () => {
       const images = Array.from(document.querySelectorAll(".carousel-image"));
+      const text = Array.from(document.querySelectorAll('.carousel-text'));
       setTimeout(() => {
+        text[activeCount].classList.remove('active');
         images[activeCount].classList.remove('active');
         images[lastCount].classList.remove('last');
         activeCount++;
@@ -46,6 +36,7 @@ function App() {
         if (lastCount === images.length) {
           lastCount = 0;
         }
+        text[activeCount].classList.add('active');
         images[lastCount].classList.add('last');
         images[activeCount].classList.add('active');
         handleCarousel();
@@ -60,6 +51,7 @@ function App() {
       <hr />
       <NavbarDark categories={['Home', 'Scents', 'Gift Boxes']} />
       <ImageCarousel />
+      <ProductGroup title='SNAP BARS' img='snapBarProd' />
     </div>
   );
 }

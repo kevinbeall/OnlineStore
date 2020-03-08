@@ -46,7 +46,7 @@ const StyledMenuDiv = Styled.div`
   grid-template-rows: repeat(10, 60px);
   color: white;
   position: absolute;
-  z-index: 100;
+  z-index: 150;
 
   &.open {
     transform: translate(0,0);
