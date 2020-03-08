@@ -1,8 +1,16 @@
 import React from 'react';
 import Styled from 'styled-components';
 
-const StyledList = Styled.ul`
+const StyledWrapper = Styled.div`
+  position: relative;
+`;
 
+const StyledList = Styled.ul`
+  @media(max-width: 400px) {
+    &.large-nav {
+      display: none;
+    }
+  }
 `;
 
 const StyledListItem = Styled.li`
@@ -10,7 +18,7 @@ const StyledListItem = Styled.li`
   padding-right: 40px;
   color: black;
   font-weight: bold;
-
+  font-size: 0.5em;
 `;
 
 const StyledLink = Styled.a`
@@ -24,6 +32,58 @@ const StyledLink = Styled.a`
   }
 `;
 
+const StyledMenuDiv = Styled.div`
+  width: 80vw;
+  height: 100vh;
+  background-color: black;
+  transform: translate(-80vw, 0);
+  transition: 1s;
+  margin-top: -10px;
+  border: 0;
+  padding: 0;
+  opacity: 0.8;
+  display: grid;
+  grid-template-rows: repeat(10, 60px);
+  color: white;
+  position: absolute;
+
+  &.open {
+    transform: translate(0,0);
+  }
+`
+
+const StyledMenuTitle = Styled.h3`
+  color: #EBDEBC;
+  justify-self: center;
+  align-self: center;
+  font-size: 1.5em;
+`
+
+const StyledSearchBar = Styled.input`
+width: 70%;
+height: 80%;
+margin: auto;
+border-radius: 50px;
+padding-left: 10px;
+border: none;
+background-color: #EBDEBC;
+font-size: 1.2em;
+&:focus {
+  outline: 0;
+}
+`
+
+const StyledMenuLink = Styled.a`
+  text-decoration: none;
+  color: #EBDEBC;
+`;
+
+const StyledMenuItem = Styled.div`
+  justify-self: center;
+  align-self: center;
+  font-size: 1.2em;
+`
+
 const itemHref = (itemName) => {
   return itemName.replace(/\s+/g, '');
 }
@@ -35,8 +95,8 @@ const handleClick = (event) => {
 
 const navbarDark = (props) => {
   return (
-    <div>
-      <StyledList className="nav-list">
+    <StyledWrapper>
+      <StyledList className="nav-list large-nav">
         {props.categories.map((item, index) => {
           return (
             <StyledListItem key={index}>
@@ -47,7 +107,20 @@ const navbarDark = (props) => {
           )
         })}
       </StyledList>
-    </div>
+      <StyledMenuDiv className="nav-list small-nav">
+        <StyledMenuTitle>Menu</StyledMenuTitle>
+        <StyledSearchBar placeholder="Search..." />
+        {props.categories.map((item, index) => {
+          return (
+            <StyledMenuItem key={index}>
+              <StyledMenuLink href={`#${itemHref(item)}`}>
+                {item.toUpperCase()}
+              </StyledMenuLink>
+            </StyledMenuItem>
+          )
+        })}
+      </StyledMenuDiv>
+    </StyledWrapper>
   );
 }
 
