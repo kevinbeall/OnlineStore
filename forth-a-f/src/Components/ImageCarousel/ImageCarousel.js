@@ -5,6 +5,7 @@ import Styled from 'styled-components';
 const StyledWrapper = Styled.div`
   position: relative;
   max-width: 100%;
+  height: 300px;
 `
 
 const StyledImage = Styled.img`

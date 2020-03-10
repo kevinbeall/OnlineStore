@@ -5,7 +5,7 @@ const StyledWrapper = Styled.div`
     width: 90%;
     height: 50vh;
     background-color: #666;
-    margin: 350px auto 80px auto;
+    margin: 50px auto 25px auto;
     cursor: pointer;
 `;
 
@@ -24,12 +24,13 @@ const StyledSubHeading = Styled.h4`
 
 const StyledImage = Styled.img`
     height: 60%;
-    margin: 10% auto 0 22.5%;
+    display: block;
+    margin: 10% auto;
 `;
 
 const ProductGroup = (props) => {
-    return(
-        <StyledWrapper>
+    return (
+        <StyledWrapper onClick={props.click} className={props.title}>
             <StyledProdHeading>{props.title}</StyledProdHeading>
             <StyledSubHeading>View All</StyledSubHeading>
             <StyledImage src={require(`../../Assets/ProductGroup/${props.img}.JPG`)} alt={`Image of ${props.img}`} />

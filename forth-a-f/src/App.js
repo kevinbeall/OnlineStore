@@ -1,9 +1,13 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import Products from './Components/Products/Products';
 import HeaderComponent from './Components/HeaderComponent/HeaderComponent';
 import NavbarDark from './Components/Navbar/NavbarDark';
 import ImageCarousel from './Components/ImageCarousel/ImageCarousel';
 import ProductGroup from './Components/ProductGroup/ProductGroup';
+import SocialComponent from './Components/SocialComponent/SocialComponent';
+import FooterComponent from './Components/FooterComponent/FooterComponent';
+import Scents from './Components/Scents/Scents';
 
 
 
@@ -45,13 +49,44 @@ function App() {
     handleCarousel();
   });
 
+
+
+  const handleScentClick = (event) => {
+    console.log('clicked', event);
+  };
+
+  const handleProductGroupScentClick = (event) => {
+    const home = document.querySelector('.homeContent');
+    const target = document.querySelector('.scentsContent');
+    home.classList.add('hidden');
+    target.classList.remove('hidden');
+  };
+
+  const handleProductGroupGiftClick = (event) => {
+    console.log('click');
+  };
+
+  const handleHomeClick = () => {
+    const home = document.querySelector('.homeContent');
+    const scentContent = document.querySelector('.scentsContent');
+    home.classList.remove('hidden');
+    scentContent.classList.add('hidden');
+  }
+
   return (
     <div className="App">
       <HeaderComponent clicked={handleBurgerClick} />
-      <hr />
       <NavbarDark categories={['Home', 'Scents', 'Gift Boxes']} />
-      <ImageCarousel />
-      <ProductGroup title='SNAP BARS' img='snapBarProd' />
+      <div className="homeContent">
+        <ImageCarousel />
+        <ProductGroup click={handleProductGroupScentClick} title='SCENTS' img='snapBarProd' />
+        <ProductGroup click={handleProductGroupGiftClick} title='GIFT BOXES' img='MothersDayBox' />
+        <SocialComponent />
+      </div>
+      <div className="scentsContent hidden">
+        <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
+      </div>
+      <FooterComponent />
     </div>
   );
 }
