@@ -11,7 +11,7 @@ const StyledWrapper = Styled.div`
 
 const StyledItemCont = Styled.div`
   background-color: #666;
-  width: 90%;
+  width: 90%;\
   justify-self: center;
   text-align: center;
   color: #EBDEBC;
