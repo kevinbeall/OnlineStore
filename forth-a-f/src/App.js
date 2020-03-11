@@ -4,6 +4,7 @@ import Products from './Components/Products/Products';
 import HeaderComponent from './Components/HeaderComponent/HeaderComponent';
 import NavbarDark from './Components/Navbar/NavbarDark';
 import ImageCarousel from './Components/ImageCarousel/ImageCarousel';
+import ProductGroupWrapper from './Components/ProductGroup/ProductGroupWrapper';
 import ProductGroup from './Components/ProductGroup/ProductGroup';
 import SocialComponent from './Components/SocialComponent/SocialComponent';
 import FooterComponent from './Components/FooterComponent/FooterComponent';
@@ -79,8 +80,7 @@ function App() {
       <NavbarDark categories={['Home', 'Scents', 'Gift Boxes']} />
       <div className="homeContent">
         <ImageCarousel />
-        <ProductGroup click={handleProductGroupScentClick} title='SCENTS' img='snapBarProd' />
-        <ProductGroup click={handleProductGroupGiftClick} title='GIFT BOXES' img='MothersDayBox' />
+        <ProductGroupWrapper handleScentClick={handleProductGroupScentClick} handleGiftClick={handleProductGroupGiftClick} />
         <SocialComponent />
       </div>
       <div className="scentsContent hidden">

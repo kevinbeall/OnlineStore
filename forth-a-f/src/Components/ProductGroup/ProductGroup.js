@@ -2,11 +2,16 @@ import React from 'react';
 import Styled from 'styled-components';
 
 const StyledWrapper = Styled.div`
-    width: 90%;
-    height: 50vh;
+    width: 300px;
+    height: 300px;
     background-color: #666;
     margin: 50px auto 25px auto;
     cursor: pointer;
+
+    @media(min-width: 700px){
+        height: 500px;
+        width: 500px;
+      }
 `;
 
 const StyledProdHeading = Styled.h3`
@@ -14,18 +19,29 @@ const StyledProdHeading = Styled.h3`
     margin: 0;
     padding-top: 30px;
     color: #EBDEBC;
+    @media(min-width: 700px){
+        font-size: 1.8em;
+      }
 `;
 
 const StyledSubHeading = Styled.h4`
     text-align: center;
     margin: 0;
     color: #EBDEBC;
+    @media(min-width: 700px){
+        font-size: 1.4em;
+        padding-top: 20px;
+      }
+
 `;
 
 const StyledImage = Styled.img`
-    height: 60%;
+    height: 150px;
     display: block;
     margin: 10% auto;
+    @media(min-width: 700px){
+        height: 300px;
+    }
 `;
 
 const ProductGroup = (props) => {
