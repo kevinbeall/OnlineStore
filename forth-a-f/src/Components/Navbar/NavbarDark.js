@@ -6,7 +6,7 @@ const StyledWrapper = Styled.div`
 `;
 
 const StyledList = Styled.ul`
-  @media(max-width: 400px) {
+  @media(max-width: 700px) {
     &.large-nav {
       display: none;
     }
@@ -18,7 +18,8 @@ const StyledListItem = Styled.li`
   padding-right: 40px;
   color: black;
   font-weight: bold;
-  font-size: 0.5em;
+  font-size: 1em;
+
 `;
 
 const StyledLink = Styled.a`

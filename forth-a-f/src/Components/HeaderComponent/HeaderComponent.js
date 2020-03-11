@@ -7,6 +7,10 @@ const StyledHeader = Styled.div`
   margin: 30px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+
+  @media(min-width: 700px) {
+    grid-template-columns: 3fr 1fr;
+  }
   `;
 
 const StyledLogo = Styled.span`
@@ -16,6 +20,13 @@ const StyledLogo = Styled.span`
   font-size: 1em;
   width: 200px;
   text-align: center;
+
+  @media(min-width: 700px) {
+    font-size 2em;
+    width: 400px;
+    border: 4px solid black;
+    padding: 20px;
+  }
 `;
 
 const StyledCartSearch = Styled.div`
@@ -28,12 +39,20 @@ const StyledImage = Styled.img`
   &.search {
     display: none;
   }
+
+  @media (min-width: 700px){
+    &.search {
+      display: inline-block;
+      padding-right: 20px
+    }
+  }
+
 `;
 
 const StyledBurger = Styled.div`
   display: none;
 
-  @media(max-width: 400px){
+  @media(max-width: 700px){
     display: inline-block;
     height: 20px;
     width: 30px;
