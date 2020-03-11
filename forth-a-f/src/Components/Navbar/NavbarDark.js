@@ -52,6 +52,10 @@ const StyledMenuDiv = Styled.div`
   &.open {
     transform: translate(0,0);
   }
+
+  @media(min-width: 700px){
+    display: none;
+  }
 `
 
 const StyledMenuTitle = Styled.h3`

@@ -6,6 +6,14 @@ const StyledWrapper = Styled.div`
   position: relative;
   max-width: 100%;
   height: 300px;
+
+  @media(min-width: 700px){
+    height: 500px;
+  }
+
+  @media(min-width: 1200px){
+    height: 700px;
+  }
 `
 
 const StyledImage = Styled.img`
@@ -14,8 +22,15 @@ height: 300px;
 transfrom: translate(0, 100vw);
 transition: all 1s;
 position: absolute;
+object-fit: cover;
 
+@media(min-width: 700px){
+  height: 500px;
+}
 
+@media(min-width: 1200px){
+  height: 700px;
+}
 
 &.carousel-image {
   opacity: 0;
@@ -38,6 +53,15 @@ const StyledDesc = Styled.h4`
   &.active {
     left: 30px;
     opacity: 0.8;
+  }
+
+  @media(min-width: 700px){
+    top: 330px;
+  }
+
+  @media(min-width: 1200px){
+    top: 550px;
+    font-size: 1.5em;
   }
 `
 
