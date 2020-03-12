@@ -5,17 +5,27 @@ const StyledWrapper = Styled.div`
   background-color: black;
   color: white;
   display: grid;
+
+  @media (min-width: 700px){
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const StyledSection = Styled.div`
   min-width: 300px;
   text-align: center;
+
+  @media (min-width: 700px){
+    text-align: left;
+    margin: auto;
+  }
 `;
 
 const StyledLink = Styled.a`
   color: white;
   text-decoration: none;
   opacity: 0.8;
+  cursor: pointer;
 
   &:hover {
     opacity: 1;
@@ -30,6 +40,7 @@ margin: 0;
 const StyledListItem = Styled.li`
   list-style-type: none;
   padding: 10px;
+
 `;
 
 const StyledCopySec = Styled.p`

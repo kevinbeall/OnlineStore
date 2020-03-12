@@ -90,15 +90,6 @@ const StyledMenuItem = Styled.div`
   font-size: 1.2em;
 `
 
-const itemHref = (itemName) => {
-  return itemName.replace(/\s+/g, '');
-}
-
-const handleClick = (event) => {
-  document.querySelector('.nav-list .active').classList.remove('active')
-  event.target.classList.add('active');
-}
-
 const navbarDark = (props) => {
   return (
     <StyledWrapper>
@@ -106,7 +97,7 @@ const navbarDark = (props) => {
         {props.categories.map((item, index) => {
           return (
             <StyledListItem key={index}>
-              <StyledLink onClick={handleClick} className={index === 0 ? "active" : null} href={`#${itemHref(item)}`}>
+              <StyledLink onClick={props.click} className={index === 0 ? "active" : null}>
                 {item.toUpperCase()}
               </StyledLink>
             </StyledListItem>
@@ -119,7 +110,7 @@ const navbarDark = (props) => {
         {props.categories.map((item, index) => {
           return (
             <StyledMenuItem key={index}>
-              <StyledMenuLink href={`#${itemHref(item)}`}>
+              <StyledMenuLink onClick={props.click}>
                 {item.toUpperCase()}
               </StyledMenuLink>
             </StyledMenuItem>

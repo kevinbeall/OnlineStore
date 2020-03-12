@@ -7,6 +7,15 @@ const StyledWrapper = Styled.div`
   width: 90%;
   margin: auto;
   position: relative;
+  @media (min-width: 700px){
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (min-width: 1600px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
 
 const StyledItemCont = Styled.div`

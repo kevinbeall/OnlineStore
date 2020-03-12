@@ -61,6 +61,7 @@ function App() {
     const target = document.querySelector('.scentsContent');
     home.classList.add('hidden');
     target.classList.remove('hidden');
+    window.scrollTo(0, 0);
   };
 
   const handleProductGroupGiftClick = (event) => {
@@ -72,12 +73,29 @@ function App() {
     const scentContent = document.querySelector('.scentsContent');
     home.classList.remove('hidden');
     scentContent.classList.add('hidden');
+    window.scrollTo(0, 0);
+  }
+
+  const handleNavClick = (event) => {
+    // add active to clikced item which then increases the opacity of that item.
+    document.querySelector('.nav-list .active').classList.remove('active')
+    event.target.classList.add('active');
+    //check the button clicked and call to function to render content needed
+    if (event.currentTarget.innerHTML === 'HOME') {
+      handleHomeClick();
+    } else if (event.currentTarget.innerHTML === 'SCENTS') {
+      handleProductGroupScentClick();
+    }
+    const smallNav = document.querySelector('.small-nav');
+    if (smallNav.classList.contains('open')) {
+      handleBurgerClick();
+    }
   }
 
   return (
     <div className="App">
       <HeaderComponent clicked={handleBurgerClick} />
-      <NavbarDark categories={['Home', 'Scents', 'Gift Boxes']} />
+      <NavbarDark click={handleNavClick} categories={['Home', 'Scents', 'Gift Boxes']} />
       <div className="homeContent">
         <ImageCarousel />
         <ProductGroupWrapper handleScentClick={handleProductGroupScentClick} handleGiftClick={handleProductGroupGiftClick} />
