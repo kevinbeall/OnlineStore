@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Products from './Components/Products/Products';
 import HeaderComponent from './Components/HeaderComponent/HeaderComponent';
 import NavbarDark from './Components/Navbar/NavbarDark';
 import ImageCarousel from './Components/ImageCarousel/ImageCarousel';
 import ProductGroupWrapper from './Components/ProductGroup/ProductGroupWrapper';
-import ProductGroup from './Components/ProductGroup/ProductGroup';
 import SocialComponent from './Components/SocialComponent/SocialComponent';
 import FooterComponent from './Components/FooterComponent/FooterComponent';
 import Scents from './Components/Scents/Scents';
-
+import Product from './Components/Product/Product';
 
 
 const handleBurgerClick = () => {
@@ -22,6 +21,9 @@ const handleBurgerClick = () => {
 }
 
 function App() {
+  const [currentImage, setImage] = useState('BlackOpium.jpg');
+  const [selectedPrice, setPrice] = useState(Products.pricing[0].snapBar);
+
   useEffect(() => {
     let activeCount = 0;
     let lastCount = 3
@@ -53,7 +55,8 @@ function App() {
 
 
   const handleScentClick = (event) => {
-    console.log('clicked', event);
+    setImage(event.currentTarget.firstElementChild.alt);
+    console.log(currentImage);
   };
 
   const handleProductGroupScentClick = (event) => {
@@ -92,6 +95,22 @@ function App() {
     }
   }
 
+  const handleVariation = (event) => {
+    const buttons = Array.from(document.querySelectorAll('.variation-button'));
+
+    buttons.forEach(button => {
+      button.classList.remove('selected');
+    });
+    event.currentTarget.classList.add('selected');
+    if (event.currentTarget.value === 'snapBar') {
+      setPrice(Products.pricing[0].snapBar);
+    } else if (event.currentTarget.value === 'individual') {
+      setPrice(Products.pricing[0].individual);
+    } else if (event.currentTarget.value === 'sample') {
+      setPrice(Products.pricing[0].sample);
+    }
+  }
+
   return (
     <div className="App">
       <HeaderComponent clicked={handleBurgerClick} />
@@ -103,6 +122,9 @@ function App() {
       </div>
       <div className="scentsContent hidden">
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
+      </div>
+      <div className="productContent">
+        <Product price={selectedPrice} click={handleVariation} products={Products} image={currentImage} />
       </div>
       <FooterComponent />
     </div>

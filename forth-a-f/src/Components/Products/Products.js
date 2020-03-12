@@ -131,7 +131,7 @@ const Products = {
     {
       productCode: '017',
       productName: 'Alien Invasion',
-      productDesc: "Green fig, Red Berries, Cassis,Oorchard Apples,  Lily Blossom, Pink Rose, Jasmine,. All tied together with a note of Vanilla.",
+      productDesc: "Similar to the women’s fragrance. Woody Amber, Jasmine Sambac, Cashmeran Wood and White Amber.",
       productVariation: ['Snap Bar', 'Individuals', 'Sample'],
       scentType: 'perfume',
       image: 'AlienInvasion.jpg',

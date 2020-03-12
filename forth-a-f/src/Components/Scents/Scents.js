@@ -39,12 +39,12 @@ const StyledImage = Styled.img`
 
 const Scents = (props) => {
   return (
-    <StyledWrapper onClick={props.click}>
+    <StyledWrapper>
       <StyledItemCont className="home" onClick={props.homeClick}>Home</StyledItemCont>
       {props.scents.productInfo.map((product, index) => {
         return (
-          <StyledItemCont key={product.productCode}>
-            <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} />
+          <StyledItemCont onClick={props.click} key={product.productCode}>
+            <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
           </StyledItemCont>
         )
       })
