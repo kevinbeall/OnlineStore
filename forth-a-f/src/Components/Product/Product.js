@@ -21,11 +21,12 @@ const StyledButtonGroup = Styled.div`
 
 const StyledButton = Styled.button`
   font-size: 1em;
-  border: 1px solid black;
+  border: 1px solid #EBDEBC;
   background-color: transparent;
   padding: 10px;
   color: #EBDEBC;
   font-weight: bold;
+  transition: all 0.5s;
 
   &.selected {
     background-color: #EBDEBC;
@@ -34,13 +35,30 @@ const StyledButton = Styled.button`
   }
 
   &.first {
-    border-radius: 25px 0 0 25px;
-    padding-left: 25px;
+    border-radius: 5px 0 0 5px;
+
   }
 
   &.last {
-    border-radius: 0 25px 25px 0;
-    padding-right: 25px;
+    border-radius: 0 5px 5px 0;
+
+  }
+
+  &.addToBasket {
+    transitions: all 1s;
+
+    &.added {
+      background-color: green;
+    }
+  }
+
+  &.gtb {
+    background-color: #EBDEBC;
+    color: #666;
+  }
+
+  &.hidden {
+    opacity: 0;
   }
 
   &:focus {
@@ -52,14 +70,51 @@ const StyledPricing = Styled.p`
   font-size: 2em;
 `;
 
+const StyledBack = Styled.div`
+display: grid;
+width: 20%;
+grid-template-columns: 1fr 1fr;
+opacity: 0.8;
+padding-bottom: 15px;
+
+&:hover {
+  opacity: 1;
+}
+`;
+
+const StyledArrowCont = Styled.div`
+align-self: center;
+justify-self: center;
+`;
+
+const StyledTopArrow = Styled.div`
+  height: 3px;
+  width: 15px;
+  background-color: #EBDEBC;
+  transform-origin: 25%;
+  transform: rotate(-35deg);
+`;
+
+const StyledBottomArrow = Styled.div`
+height: 3px;
+  width: 15px;
+  background-color: #EBDEBC;
+  transform-origin: 25%;
+  transform: rotate(35deg);
+`;
 
 const Product = (props) => {
   const prodObj = props.products.productInfo.find(element => element.image === props.image)
 
-
-
   return (
     <StyledWrapper>
+      <StyledBack onClick={props.backClick}>
+        <StyledArrowCont>
+          <StyledTopArrow></StyledTopArrow>
+          <StyledBottomArrow></StyledBottomArrow>
+        </StyledArrowCont>
+        <p>Back</p>
+      </StyledBack>
       <StyledImage src={require(`../../Assets/ProductImage/${props.image}`)} />
       <p>{prodObj.productDesc}</p>
       {/* <select className="test">
@@ -74,8 +129,9 @@ const Product = (props) => {
         <StyledButton onClick={props.click} value="individual" type="button" className="variation-button">Individuals</StyledButton>
         <StyledButton onClick={props.click} className="last variation-button" value="sample" type="button">Sample</StyledButton>
       </StyledButtonGroup>
-      <StyledPricing>Price: {props.price}</StyledPricing>
-      <StyledButton>Add to Basket</StyledButton>
+      <StyledPricing>Price: £{props.price}</StyledPricing>
+      <StyledButton className="addToBasket" onClick={() => props.basketClick(prodObj)}>{props.buttonText}</StyledButton>
+      <StyledButton className="gtb hidden">Go To Basket</StyledButton>
     </StyledWrapper>
   );
 }

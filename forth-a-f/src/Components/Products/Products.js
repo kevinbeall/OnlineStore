@@ -140,10 +140,10 @@ const Products = {
   ],
   pricing: [
     {
-      snapBar: '£4.50',
-      individual: '£3.50',
-      sample: '£1.00',
-      giftBox: '£15.00',
+      snapBar: '450',
+      individual: '350',
+      sample: '100',
+      giftBox: '1500',
     }
   ]
 }

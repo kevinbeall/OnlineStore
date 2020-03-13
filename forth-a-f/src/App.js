@@ -9,6 +9,7 @@ import SocialComponent from './Components/SocialComponent/SocialComponent';
 import FooterComponent from './Components/FooterComponent/FooterComponent';
 import Scents from './Components/Scents/Scents';
 import Product from './Components/Product/Product';
+import Basket from './Components/Basket/Basket';
 
 
 const handleBurgerClick = () => {
@@ -23,6 +24,9 @@ const handleBurgerClick = () => {
 function App() {
   const [currentImage, setImage] = useState('BlackOpium.jpg');
   const [selectedPrice, setPrice] = useState(Products.pricing[0].snapBar);
+  const [currentBasket, setBasket] = useState([]);
+  const [currentVariation, setVariation] = useState('Snap Bar');
+  const [currentTotal, setTotal] = useState(0);
 
   useEffect(() => {
     let activeCount = 0;
@@ -56,7 +60,15 @@ function App() {
 
   const handleScentClick = (event) => {
     setImage(event.currentTarget.firstElementChild.alt);
-    console.log(currentImage);
+    const scent = document.querySelector('.scentsContent');
+    const target = document.querySelector('.productContent');
+    const basketButton = document.querySelector('.addToBasket');
+    const goToBasket = document.querySelector('.gtb');
+    basketButton.innerHTML = 'Add To Basket';
+    goToBasket.classList.add('hidden');
+    scent.classList.add('hidden');
+    target.classList.remove('hidden');
+    window.scrollTo(0, 0);
   };
 
   const handleProductGroupScentClick = (event) => {
@@ -76,6 +88,14 @@ function App() {
     const scentContent = document.querySelector('.scentsContent');
     home.classList.remove('hidden');
     scentContent.classList.add('hidden');
+    window.scrollTo(0, 0);
+  }
+
+  const prodToScents = () => {
+    const scent = document.querySelector('.scentsContent');
+    const target = document.querySelector('.productContent');
+    target.classList.add('hidden');
+    scent.classList.remove('hidden');
     window.scrollTo(0, 0);
   }
 
@@ -104,11 +124,41 @@ function App() {
     event.currentTarget.classList.add('selected');
     if (event.currentTarget.value === 'snapBar') {
       setPrice(Products.pricing[0].snapBar);
+      setVariation('Snap Bar');
     } else if (event.currentTarget.value === 'individual') {
       setPrice(Products.pricing[0].individual);
+      setVariation('Individual');
     } else if (event.currentTarget.value === 'sample') {
       setPrice(Products.pricing[0].sample);
+      setVariation('Sample');
     }
+  }
+
+  const addToBasket = (prod) => {
+    const basketButton = document.querySelector('.addToBasket');
+    const goToBasket = document.querySelector('.gtb');
+    basketButton.innerHTML = 'Added!';
+    basketButton.classList.add('added');
+    goToBasket.classList.remove('hidden');
+    setTimeout(() => {
+      basketButton.classList.remove('added');
+      basketButton.innerHTML = 'Add Another?';
+    }, 1000)
+
+    setBasket([...currentBasket, { ...prod, selectedPrice, currentVariation }]);
+    calcTotal();
+  }
+  // calc total needs to be fixed as not calculating first addition
+  const calcTotal = () => {
+    let total = 0;
+    if (currentTotal === 0) {
+      setTotal(currentBasket.selectedPrice);
+    }
+    console.log(currentTotal);
+    currentBasket.forEach(item => {
+      total = currentTotal + parseInt(item.selectedPrice)
+    })
+    setTotal(total += currentTotal);
   }
 
   return (
@@ -123,8 +173,11 @@ function App() {
       <div className="scentsContent hidden">
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
       </div>
-      <div className="productContent">
-        <Product price={selectedPrice} click={handleVariation} products={Products} image={currentImage} />
+      <div className="productContent hidden">
+        <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} basketClick={addToBasket} />
+      </div>
+      <div className="basketContent">
+        <Basket total={currentTotal} basketContent={currentBasket} />
       </div>
       <FooterComponent />
     </div>
