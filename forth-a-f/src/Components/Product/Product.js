@@ -129,9 +129,9 @@ const Product = (props) => {
         <StyledButton onClick={props.click} value="individual" type="button" className="variation-button">Individuals</StyledButton>
         <StyledButton onClick={props.click} className="last variation-button" value="sample" type="button">Sample</StyledButton>
       </StyledButtonGroup>
-      <StyledPricing>Price: £{props.price}</StyledPricing>
-      <StyledButton className="addToBasket" onClick={() => props.basketClick(prodObj)}>{props.buttonText}</StyledButton>
-      <StyledButton className="gtb hidden">Go To Basket</StyledButton>
+      <StyledPricing>Price: £{(props.price / 100).toFixed(2)}</StyledPricing>
+      <StyledButton className="addToBasket" onClick={() => props.addToBasketClick(prodObj)}>{props.buttonText}</StyledButton>
+      <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
     </StyledWrapper>
   );
 }

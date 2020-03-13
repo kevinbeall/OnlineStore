@@ -95,7 +95,7 @@ const headerComponent = (props) => {
       <StyledLogo>Forth Avenue Fragrance</StyledLogo>
       <StyledCartSearch>
         <StyledImage className="search" src={searchIcon} alt="searchButton" height="24px" width="24px" />
-        <StyledImage src={cart} alt="cart Button" height="24px" width="24px" />
+        <StyledImage onClick={props.basketClick} src={cart} alt="cart Button" height="24px" width="24px" />
       </StyledCartSearch>
     </StyledHeader>
   )

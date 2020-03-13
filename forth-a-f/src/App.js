@@ -74,6 +74,10 @@ function App() {
   const handleProductGroupScentClick = (event) => {
     const home = document.querySelector('.homeContent');
     const target = document.querySelector('.scentsContent');
+    const basket = document.querySelector('.basketContent');
+    const product = document.querySelector('.productContent');
+    product.classList.add('hidden');
+    basket.classList.add('hidden');
     home.classList.add('hidden');
     target.classList.remove('hidden');
     window.scrollTo(0, 0);
@@ -86,6 +90,10 @@ function App() {
   const handleHomeClick = () => {
     const home = document.querySelector('.homeContent');
     const scentContent = document.querySelector('.scentsContent');
+    const basket = document.querySelector('.basketContent');
+    const target = document.querySelector('.productContent');
+    target.classList.add('hidden');
+    basket.classList.add('hidden');
     home.classList.remove('hidden');
     scentContent.classList.add('hidden');
     window.scrollTo(0, 0);
@@ -96,6 +104,19 @@ function App() {
     const target = document.querySelector('.productContent');
     target.classList.add('hidden');
     scent.classList.remove('hidden');
+    window.scrollTo(0, 0);
+  }
+
+  // Change all above functions to use this loop to show page needed.
+  const handleBasketClick = () => {
+    const basket = document.querySelector('.basketContent');
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+      if (!page.classList.contains('hidden')) {
+        page.classList.add('hidden');
+      }
+    })
+    basket.classList.remove('hidden');
     window.scrollTo(0, 0);
   }
 
@@ -146,37 +167,31 @@ function App() {
     }, 1000)
 
     setBasket([...currentBasket, { ...prod, selectedPrice, currentVariation }]);
-    calcTotal();
-  }
-  // calc total needs to be fixed as not calculating first addition
-  const calcTotal = () => {
-    let total = 0;
-    if (currentTotal === 0) {
-      setTotal(currentBasket.selectedPrice);
-    }
-    console.log(currentTotal);
+    // updating total price in basket
+    setTotal(0);
+    let total = parseInt(selectedPrice);
     currentBasket.forEach(item => {
-      total = currentTotal + parseInt(item.selectedPrice)
+      total = total + parseInt(item.selectedPrice);
     })
-    setTotal(total += currentTotal);
+    setTotal(total);
   }
 
   return (
     <div className="App">
-      <HeaderComponent clicked={handleBurgerClick} />
+      <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} />
       <NavbarDark click={handleNavClick} categories={['Home', 'Scents', 'Gift Boxes']} />
-      <div className="homeContent">
+      <div className="page homeContent">
         <ImageCarousel />
         <ProductGroupWrapper handleScentClick={handleProductGroupScentClick} handleGiftClick={handleProductGroupGiftClick} />
         <SocialComponent />
       </div>
-      <div className="scentsContent hidden">
+      <div className="page scentsContent hidden">
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
       </div>
-      <div className="productContent hidden">
-        <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} basketClick={addToBasket} />
+      <div className="page productContent hidden">
+        <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
       </div>
-      <div className="basketContent">
+      <div className="page basketContent hidden">
         <Basket total={currentTotal} basketContent={currentBasket} />
       </div>
       <FooterComponent />
