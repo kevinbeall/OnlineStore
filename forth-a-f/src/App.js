@@ -8,6 +8,7 @@ import ProductGroupWrapper from './Components/ProductGroup/ProductGroupWrapper';
 import SocialComponent from './Components/SocialComponent/SocialComponent';
 import FooterComponent from './Components/FooterComponent/FooterComponent';
 import Scents from './Components/Scents/Scents';
+import GiftBox from './Components/GiftBoxComponent/Giftbox'
 import Product from './Components/Product/Product';
 import Basket from './Components/Basket/Basket';
 
@@ -84,7 +85,13 @@ function App() {
   };
 
   const handleProductGroupGiftClick = (event) => {
-    console.log('click');
+    const pages = document.querySelectorAll('.page');
+    const giftboxSection = document.querySelector('.giftboxContent');
+    pages.forEach(page => {
+      page.classList.add('hidden');
+    })
+    giftboxSection.classList.remove('hidden');
+    window.scrollTo(0, 0);
   };
 
   const handleHomeClick = () => {
@@ -104,6 +111,14 @@ function App() {
     const target = document.querySelector('.productContent');
     target.classList.add('hidden');
     scent.classList.remove('hidden');
+    window.scrollTo(0, 0);
+  }
+
+  const giftToHome = () => {
+    const home = document.querySelector('.homeContent');
+    const target = document.querySelector('.giftboxContent');
+    target.classList.add('hidden');
+    home.classList.remove('hidden');
     window.scrollTo(0, 0);
   }
 
@@ -156,14 +171,20 @@ function App() {
   }
 
   const addToBasket = (prod) => {
-    const basketButton = document.querySelector('.addToBasket');
-    const goToBasket = document.querySelector('.gtb');
-    basketButton.innerHTML = 'Added!';
-    basketButton.classList.add('added');
-    goToBasket.classList.remove('hidden');
+    const basketButton = document.querySelectorAll('.addToBasket');
+    const goToBasket = document.querySelectorAll('.gtb');
+    basketButton.forEach(button => {
+      button.innerHTML = 'Added!';
+      button.classList.add('added');
+    })
+    goToBasket.forEach(button => {
+      button.classList.remove('hidden');
+    })
     setTimeout(() => {
-      basketButton.classList.remove('added');
-      basketButton.innerHTML = 'Add Another?';
+      basketButton.forEach(button => {
+        button.classList.remove('added');
+        button.innerHTML = 'Add Another?';
+      })
     }, 1000)
 
     setBasket([...currentBasket, { ...prod, selectedPrice, currentVariation }]);
@@ -187,6 +208,9 @@ function App() {
       </div>
       <div className="page scentsContent hidden">
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
+      </div>
+      <div className="page giftboxContent hidden">
+        <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={'Add To Basket'} goToBasketClick={handleBasketClick} backClick={giftToHome} />
       </div>
       <div className="page productContent hidden">
         <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />

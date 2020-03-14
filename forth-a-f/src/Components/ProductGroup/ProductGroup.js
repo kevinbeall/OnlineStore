@@ -2,12 +2,17 @@ import React from 'react';
 import Styled from 'styled-components';
 
 const StyledWrapper = Styled.div`
-    width: 300px;
+    width: 250px;
     height: 300px;
     background-color: #666;
     margin: 50px auto 25px auto;
     cursor: pointer;
+    transition: all 0.5s;
 
+    &:hover {
+        width: 260px;
+        height: 310px;
+    }
     @media(min-width: 700px){
         height: 500px;
         width: 500px;
@@ -19,6 +24,7 @@ const StyledProdHeading = Styled.h3`
     margin: 0;
     padding-top: 30px;
     color: #EBDEBC;
+    color: black;
     @media(min-width: 700px){
         font-size: 1.8em;
       }

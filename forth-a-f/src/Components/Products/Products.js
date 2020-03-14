@@ -138,6 +138,64 @@ const Products = {
     },
 
   ],
+  GiftBoxes: {
+    MothersDay:
+      {
+        productCode: 'gb001',
+        productName: 'Mothers Day Giftbox',
+        productDesc: {
+          descHead: "Make it extra special for Mum this year with our Mother's Day Gift Box!",
+          descIncludes: [
+            {
+              productCode: '002',
+              productName: 'Spring Awakening',
+              productDesc: 'Similar to the popular fabric conditioner. Spring flowers, with hints of Patchouli and White Cedar.',
+              productVariation: 'Snap Bar',
+              scentType: 'cleaning',
+              image: 'springAwakening.jpg',
+            },
+            {
+              productCode: '016',
+              productName: 'Kir Royale',
+              productDesc: "Green fig, Red Berries, Cassis,Oorchard Apples,  Lily Blossom, Pink Rose, Jasmine,. All tied together with a note of Vanilla.",
+              productVariation: 'Snap Bar',
+              scentType: 'other',
+              image: 'KirRoyale.jpg',
+            },
+            {
+              productCode: '006',
+              productName: 'Baby Powder',
+              productDesc: 'Just like the classic baby powder scent we all love. A sweet and memorable smell of clean elegance.',
+              productVariation: 'Snap Bar',
+              scentType: 'other',
+              image: 'BabyPowder.jpg',
+            },
+            {
+              productCode: '008',
+              productName: 'Mountain Air',
+              productDesc: 'Similar to the popular fragranced cleaner. Notes of Lime, Pineapple, Parmma Violet, Lavender, Gardenia, Rose, Iris, Lily and Heliotrope, Orange Blossom, Precious Wood & Amber.',
+              productVariation: 'Snap Bar',
+              scentType: 'cleaning',
+              image: 'MountainAir.jpg',
+            },
+            {
+              productCode: '016',
+              productName: 'Kir Royale',
+              productDesc: "Green fig, Red Berries, Cassis,Oorchard Apples,  Lily Blossom, Pink Rose, Jasmine,. All tied together with a note of Vanilla.",
+              productVariation: 'Individuals',
+              scentType: 'other',
+              image: 'KirRoyale.jpg',
+            },
+          ]
+        },
+        productAdditional: '+ a personalised message to make sure Mum knows how special she is to you.',
+        productVariation: 'Gift Box',
+        image: 'MothersDayBox.jpg',
+      },
+    CustomGiftBox: {
+      productName: 'test',
+    },
+  },
   pricing: [
     {
       snapBar: '450',
