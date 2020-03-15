@@ -172,6 +172,8 @@ function App() {
       handleHomeClick();
     } else if (event.currentTarget.innerHTML === 'SCENTS') {
       handleProductGroupScentClick();
+    } else if (event.currentTarget.innerHTML === 'GIFT BOXES') {
+      handleProductGroupGiftClick();
     }
     const smallNav = document.querySelector('.small-nav');
     if (smallNav.classList.contains('open')) {
@@ -211,6 +213,8 @@ function App() {
   const addToBasket = (prod) => {
     const basketButton = document.querySelectorAll('.addToBasket');
     const goToBasket = document.querySelectorAll('.gtb');
+    prod.id = Math.random().toString(36).replace('0.', '');
+    console.log(prod);
     basketButton.forEach(button => {
       button.innerHTML = 'Added!';
       button.classList.add('added');
@@ -235,6 +239,20 @@ function App() {
     setTotal(total);
   }
 
+  const handleBasketRemove = (event, item) => {
+    const toBeRemoved = currentBasket.find(item => event.currentTarget.parentElement.parentElement.classList.contains(item.id));
+    const itemIndex = currentBasket.findIndex(item => item === toBeRemoved);
+    const basketCopy = [...currentBasket];
+    basketCopy.splice(itemIndex, 1);
+    setBasket(basketCopy);
+    // update basket total cost
+    let total = 0;
+    basketCopy.forEach(item => {
+      total = total + parseInt(item.selectedPrice);
+    })
+    setTotal(total);
+  }
+
   return (
     <div className="App">
       <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} homeClick={handleHomeClick} />
@@ -254,7 +272,7 @@ function App() {
         <Product buttonText={buttonText} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
       </div>
       <div className="page basketContent hidden">
-        <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} />
+        <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} remove={handleBasketRemove} />
       </div>
       <FooterComponent />
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 const StyledWrapper = Styled.div`
@@ -73,27 +73,6 @@ font-size: 1em;
   background-color: #EBDEBC;
   color: #666;
 }
-`;
-
-const StyledArrowCont = Styled.div`
-align-self: center;
-justify-self: center;
-`;
-
-const StyledTopArrow = Styled.div`
-  height: 3px;
-  width: 15px;
-  background-color: #EBDEBC;
-  transform-origin: 25%;
-  transform: rotate(-35deg);
-`;
-
-const StyledBottomArrow = Styled.div`
-height: 3px;
-  width: 15px;
-  background-color: #EBDEBC;
-  transform-origin: 25%;
-  transform: rotate(35deg);
 `;
 
 const StyledHeading = Styled.h2`

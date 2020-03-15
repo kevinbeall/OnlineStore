@@ -83,27 +83,6 @@ margin-bottom: 40px;
 }
 `;
 
-const StyledArrowCont = Styled.div`
-align-self: center;
-justify-self: center;
-`;
-
-const StyledTopArrow = Styled.div`
-  height: 3px;
-  width: 15px;
-  background-color: #EBDEBC;
-  transform-origin: 25%;
-  transform: rotate(-35deg);
-`;
-
-const StyledBottomArrow = Styled.div`
-height: 3px;
-  width: 15px;
-  background-color: #EBDEBC;
-  transform-origin: 25%;
-  transform: rotate(35deg);
-`;
-
 const StyledProdHead = Styled.h3`
   margin: 20px 0 20px 0;
   padding: 0;

@@ -95,15 +95,17 @@ const Basket = (props) => {
     <BasketWrapper>
       <ContinueShopping onClick={props.contshopclick}>Continue Shopping</ContinueShopping>
       <BasketHeading>Basket</BasketHeading>
-      {
+      {props.basketContent === undefined ?
+        <p>empty</p>
+        :
         props.basketContent.map(item => {
           return (
-            <StyledBasketItem>
+            <StyledBasketItem className={item.id}>
               <StyledItemImage src={require(`../../Assets/ProductImage/${item.image}`)} height='100px' />
               <StyledItemInfo>
                 <StyledItemTitle>{item.productName}</StyledItemTitle>
                 <StyledInfo>{item.currentVariation} - £{(item.selectedPrice / 100).toFixed(2)}</StyledInfo>
-                <StyledRemove>remove</StyledRemove>
+                <StyledRemove onClick={props.remove}>remove</StyledRemove>
               </StyledItemInfo>
             </StyledBasketItem>
           );

@@ -9,10 +9,6 @@ const StyledWrapper = Styled.div`
     cursor: pointer;
     transition: all 0.5s;
 
-    &:hover {
-        width: 260px;
-        height: 310px;
-    }
     @media(min-width: 700px){
         height: 500px;
         width: 500px;
