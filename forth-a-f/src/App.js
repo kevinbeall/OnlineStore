@@ -26,7 +26,7 @@ function App() {
   const [currentImage, setImage] = useState('BlackOpium.jpg');
   const [selectedPrice, setPrice] = useState(Products.pricing[0].snapBar);
   const [currentBasket, setBasket] = useState([]);
-  const [currentVariation, setVariation] = useState('Snap Bar');
+  const [currentVariation, setVariation] = useState('');
   const [currentTotal, setTotal] = useState(0);
 
   useEffect(() => {
@@ -177,6 +177,9 @@ function App() {
     } else if (event.currentTarget.value === 'sample') {
       setPrice(Products.pricing[0].sample);
       setVariation('Sample');
+    } else {
+      setPrice(Products.pricing[0].giftBox);
+      setVariation('Gift Box')
     }
   }
 
@@ -220,7 +223,7 @@ function App() {
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
       </div>
       <div className="page giftboxContent hidden">
-        <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={'Add To Basket'} goToBasketClick={handleBasketClick} backClick={giftToHome} />
+        <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={'Add To Basket'} goToBasketClick={handleBasketClick} backClick={giftToHome} click={handleVariation} />
       </div>
       <div className="page productContent hidden">
         <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />

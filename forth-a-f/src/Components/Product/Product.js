@@ -125,7 +125,7 @@ const Product = (props) => {
         })}
       </select> */}
       <StyledButtonGroup>
-        <StyledButton onClick={props.click} value="snapBar" className="first selected variation-button" type="button">Snap Bar</StyledButton>
+        <StyledButton onClick={props.click} value="snapBar" className="first variation-button" type="button">Snap Bar</StyledButton>
         <StyledButton onClick={props.click} value="individual" type="button" className="variation-button">Individuals</StyledButton>
         <StyledButton onClick={props.click} className="last variation-button" value="sample" type="button">Sample</StyledButton>
       </StyledButtonGroup>

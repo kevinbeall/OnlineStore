@@ -153,6 +153,9 @@ const GiftBox = (props) => {
         })
       }
       {currentGiftBox.productAdditional}
+      <StyledButtonGroup>
+        <StyledButton className="variation-button" value="giftBox" onClick={props.click}>GiftBox</StyledButton>
+      </StyledButtonGroup>
       <StyledPricing>Price: £{(parseInt(props.products.pricing[0].giftBox) / 100).toFixed(2)}</StyledPricing>
       <StyledButton className="addToBasket" onClick={() => props.addToBasketClick(currentGiftBox)}>{props.buttonText}</StyledButton>
       <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
