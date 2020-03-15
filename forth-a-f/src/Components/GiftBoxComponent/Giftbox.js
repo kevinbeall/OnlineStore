@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Styled from 'styled-components';
 
 const StyledWrapper = Styled.div`
@@ -16,31 +16,22 @@ const StyledImage = Styled.img`
 `;
 
 const StyledButtonGroup = Styled.div`
-  margin: auto;
+  margin: 20px auto;
 `;
 
 const StyledButton = Styled.button`
   font-size: 1em;
-  border: 1px solid #EBDEBC;
+  border: 3px solid #EBDEBC;
   background-color: transparent;
   padding: 10px;
   color: #EBDEBC;
   font-weight: bold;
   transition: all 0.5s;
 
+
   &.selected {
     background-color: #EBDEBC;
     color: #666;
-
-  }
-
-  &.first {
-    border-radius: 5px 0 0 5px;
-
-  }
-
-  &.last {
-    border-radius: 0 5px 5px 0;
 
   }
 
@@ -70,15 +61,17 @@ const StyledPricing = Styled.p`
   font-size: 2em;
 `;
 
-const StyledBack = Styled.div`
-display: grid;
-width: 20%;
-grid-template-columns: 1fr 1fr;
-opacity: 0.8;
-padding-bottom: 15px;
+const StyledBack = Styled.button`
+border: 3px solid #EBDEBC;
+background-color: transparent;
+height: 40px;
+width: 90px;
+color: #EBDEBC;
+font-size: 1em;
 
 &:hover {
-  opacity: 1;
+  background-color: #EBDEBC;
+  color: #666;
 }
 `;
 
@@ -123,18 +116,27 @@ const StyledInfo = Styled.div`
   align-self: center;
 `;
 
+const StyledProdHead = Styled.h3`
+  margin: 20px 0 0 0;
+  padding: 0;
+  justify-self: center;
+`;
+
 const GiftBox = (props) => {
   const currentGiftBox = props.products.GiftBoxes.MothersDay;
 
+  // useEffect(() => {
+  //   return function cleanup() {
+  //     const addToBasketButton = document.querySelectorAll('.addToBasket');
+  //     addToBasketButton.forEach(btn => {
+  //       btn.classList.add('hidden');
+  //     })
+  //   }
+  // })
+
   return (
     <StyledWrapper>
-      <StyledBack onClick={props.backClick}>
-        <StyledArrowCont>
-          <StyledTopArrow></StyledTopArrow>
-          <StyledBottomArrow></StyledBottomArrow>
-        </StyledArrowCont>
-        <p>Back</p>
-      </StyledBack>
+      <StyledBack onClick={props.backClick}>Back</StyledBack>
       <StyledHeading>{currentGiftBox.productName}</StyledHeading>
       <StyledImage src={require(`../../Assets/ProductImage/${currentGiftBox.image}`)} />
       <p>{currentGiftBox.productDesc.descHead}</p>
@@ -153,11 +155,12 @@ const GiftBox = (props) => {
         })
       }
       {currentGiftBox.productAdditional}
+      <StyledProdHead>Select Product</StyledProdHead>
       <StyledButtonGroup>
         <StyledButton className="variation-button" value="giftBox" onClick={props.click}>GiftBox</StyledButton>
       </StyledButtonGroup>
-      <StyledPricing>Price: £{(parseInt(props.products.pricing[0].giftBox) / 100).toFixed(2)}</StyledPricing>
-      <StyledButton className="addToBasket" onClick={() => props.addToBasketClick(currentGiftBox)}>{props.buttonText}</StyledButton>
+      <StyledPricing className="price hidden">Price: £{(parseInt(props.products.pricing[0].giftBox) / 100).toFixed(2)}</StyledPricing>
+      <StyledButton className="addToBasket hidden" onClick={() => props.addToBasketClick(currentGiftBox)}>{props.buttonText}</StyledButton>
       <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
     </StyledWrapper>
   );

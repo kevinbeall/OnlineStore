@@ -28,6 +28,7 @@ function App() {
   const [currentBasket, setBasket] = useState([]);
   const [currentVariation, setVariation] = useState('');
   const [currentTotal, setTotal] = useState(0);
+  const buttonText = "Add to Basket";
 
   useEffect(() => {
     let activeCount = 0;
@@ -99,6 +100,7 @@ function App() {
     const scentContent = document.querySelector('.scentsContent');
     const basket = document.querySelector('.basketContent');
     const target = document.querySelector('.productContent');
+    cleanup();
     target.classList.add('hidden');
     basket.classList.add('hidden');
     home.classList.remove('hidden');
@@ -109,6 +111,7 @@ function App() {
   const prodToScents = () => {
     const scent = document.querySelector('.scentsContent');
     const target = document.querySelector('.productContent');
+    cleanup();
     target.classList.add('hidden');
     scent.classList.remove('hidden');
     window.scrollTo(0, 0);
@@ -117,6 +120,7 @@ function App() {
   const giftToHome = () => {
     const home = document.querySelector('.homeContent');
     const target = document.querySelector('.giftboxContent');
+    cleanup();
     target.classList.add('hidden');
     home.classList.remove('hidden');
     window.scrollTo(0, 0);
@@ -125,11 +129,25 @@ function App() {
   const continueShopping = () => {
     const home = document.querySelector('.homeContent');
     const pages = document.querySelectorAll('.page');
+    cleanup();
     pages.forEach(page => {
       page.classList.add('hidden');
     })
     home.classList.remove('hidden');
     window.scrollTo(0, 0);
+  }
+  const cleanup = () => {
+    const varbtn = document.querySelectorAll('.variation-button');
+    const basketbtn = document.querySelectorAll('.addToBasket');
+    const priceEl = document.querySelectorAll('.price');
+    const gtb = document.querySelectorAll('.gtb');
+    gtb.forEach(el => el.classList.add('hidden'));
+    priceEl.forEach(el => el.classList.add('hidden'));
+    basketbtn.forEach(btn => {
+      btn.classList.add('hidden')
+      btn.innerHTML = buttonText;
+    });
+    varbtn.forEach(btn => btn.classList.remove('selected'));
   }
 
   // Change all above functions to use this loop to show page needed.
@@ -163,6 +181,13 @@ function App() {
 
   const handleVariation = (event) => {
     const buttons = Array.from(document.querySelectorAll('.variation-button'));
+    const addToBasketBtn = document.querySelectorAll('.addToBasket');
+    const priceEl = document.querySelectorAll('.price');
+
+    priceEl.forEach(el => el.classList.remove('hidden'));
+    addToBasketBtn.forEach(btn => {
+      btn.classList.remove('hidden');
+    })
 
     buttons.forEach(button => {
       button.classList.remove('selected');
@@ -177,7 +202,7 @@ function App() {
     } else if (event.currentTarget.value === 'sample') {
       setPrice(Products.pricing[0].sample);
       setVariation('Sample');
-    } else {
+    } else if (event.currentTarget.value === 'giftBox') {
       setPrice(Products.pricing[0].giftBox);
       setVariation('Gift Box')
     }
@@ -223,10 +248,10 @@ function App() {
         <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
       </div>
       <div className="page giftboxContent hidden">
-        <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={'Add To Basket'} goToBasketClick={handleBasketClick} backClick={giftToHome} click={handleVariation} />
+        <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={buttonText} goToBasketClick={handleBasketClick} backClick={giftToHome} click={handleVariation} />
       </div>
       <div className="page productContent hidden">
-        <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
+        <Product buttonText={buttonText} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
       </div>
       <div className="page basketContent hidden">
         <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} />

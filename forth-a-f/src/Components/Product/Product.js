@@ -21,7 +21,7 @@ const StyledButtonGroup = Styled.div`
 
 const StyledButton = Styled.button`
   font-size: 1em;
-  border: 1px solid #EBDEBC;
+  border: 3px solid #EBDEBC;
   background-color: transparent;
   padding: 10px;
   color: #EBDEBC;
@@ -35,13 +35,11 @@ const StyledButton = Styled.button`
   }
 
   &.first {
-    border-radius: 5px 0 0 5px;
-
+    border-right: none;
   }
 
   &.last {
-    border-radius: 0 5px 5px 0;
-
+    border-left: none;
   }
 
   &.addToBasket {
@@ -70,15 +68,18 @@ const StyledPricing = Styled.p`
   font-size: 2em;
 `;
 
-const StyledBack = Styled.div`
-display: grid;
-width: 20%;
-grid-template-columns: 1fr 1fr;
-opacity: 0.8;
-padding-bottom: 15px;
+const StyledBack = Styled.button`
+border: 3px solid #EBDEBC;
+background-color: transparent;
+height: 40px;
+width: 90px;
+color: #EBDEBC;
+font-size: 1em;
+margin-bottom: 40px;
 
 &:hover {
-  opacity: 1;
+  background-color: #EBDEBC;
+  color: #666;
 }
 `;
 
@@ -103,18 +104,18 @@ height: 3px;
   transform: rotate(35deg);
 `;
 
+const StyledProdHead = Styled.h3`
+  margin: 20px 0 20px 0;
+  padding: 0;
+  justify-self: center;
+`;
+
 const Product = (props) => {
   const prodObj = props.products.productInfo.find(element => element.image === props.image)
 
   return (
     <StyledWrapper>
-      <StyledBack onClick={props.backClick}>
-        <StyledArrowCont>
-          <StyledTopArrow></StyledTopArrow>
-          <StyledBottomArrow></StyledBottomArrow>
-        </StyledArrowCont>
-        <p>Back</p>
-      </StyledBack>
+      <StyledBack onClick={props.backClick}>Back</StyledBack>
       <StyledImage src={require(`../../Assets/ProductImage/${props.image}`)} />
       <p>{prodObj.productDesc}</p>
       {/* <select className="test">
@@ -124,13 +125,14 @@ const Product = (props) => {
           );
         })}
       </select> */}
+      <StyledProdHead>Select product</StyledProdHead>
       <StyledButtonGroup>
         <StyledButton onClick={props.click} value="snapBar" className="first variation-button" type="button">Snap Bar</StyledButton>
         <StyledButton onClick={props.click} value="individual" type="button" className="variation-button">Individuals</StyledButton>
         <StyledButton onClick={props.click} className="last variation-button" value="sample" type="button">Sample</StyledButton>
       </StyledButtonGroup>
-      <StyledPricing>Price: £{(props.price / 100).toFixed(2)}</StyledPricing>
-      <StyledButton className="addToBasket" onClick={() => props.addToBasketClick(prodObj)}>{props.buttonText}</StyledButton>
+      <StyledPricing className="price hidden">Price: £{(props.price / 100).toFixed(2)}</StyledPricing>
+      <StyledButton className="addToBasket hidden" onClick={() => props.addToBasketClick(prodObj)}>{props.buttonText}</StyledButton>
       <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
     </StyledWrapper>
   );
