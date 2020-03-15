@@ -31,6 +31,13 @@ function App() {
   const [stateProducts, setProducts] = useState(Products.productInfo)
   const buttonText = "Add to Basket";
 
+  window.addEventListener('keypress', (e) => {
+    if (e.keyCode === 13) {
+      document.querySelector('.small-nav').classList.remove('open');
+      document.querySelector('.searchBar').value = '';
+    }
+  })
+
   useEffect(() => {
     let activeCount = 0;
     let lastCount = 3

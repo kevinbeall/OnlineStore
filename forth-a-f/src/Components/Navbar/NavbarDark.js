@@ -106,7 +106,7 @@ const navbarDark = (props) => {
       </StyledList>
       <StyledMenuDiv className="nav-list small-nav">
         <StyledMenuTitle>Menu</StyledMenuTitle>
-        <StyledSearchBar placeholder="Search..." onChange={props.searchChanged} />
+        <StyledSearchBar className="searchBar" placeholder="Search..." onChange={props.searchChanged} />
         {props.categories.map((item, index) => {
           return (
             <StyledMenuItem key={index}>
