@@ -24,7 +24,6 @@ const StyledProdHeading = Styled.h3`
     margin: 0;
     padding-top: 30px;
     color: #EBDEBC;
-    color: black;
     @media(min-width: 700px){
         font-size: 1.8em;
       }

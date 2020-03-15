@@ -122,6 +122,16 @@ function App() {
     window.scrollTo(0, 0);
   }
 
+  const continueShopping = () => {
+    const home = document.querySelector('.homeContent');
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+      page.classList.add('hidden');
+    })
+    home.classList.remove('hidden');
+    window.scrollTo(0, 0);
+  }
+
   // Change all above functions to use this loop to show page needed.
   const handleBasketClick = () => {
     const basket = document.querySelector('.basketContent');
@@ -199,7 +209,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} />
+      <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} homeClick={handleHomeClick} />
       <NavbarDark click={handleNavClick} categories={['Home', 'Scents', 'Gift Boxes']} />
       <div className="page homeContent">
         <ImageCarousel />
@@ -216,7 +226,7 @@ function App() {
         <Product buttonText={'Add To Basket'} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
       </div>
       <div className="page basketContent hidden">
-        <Basket total={currentTotal} basketContent={currentBasket} />
+        <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} />
       </div>
       <FooterComponent />
     </div>

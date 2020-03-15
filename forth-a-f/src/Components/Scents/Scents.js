@@ -7,6 +7,7 @@ const StyledWrapper = Styled.div`
   width: 90%;
   margin: auto;
   position: relative;
+
   @media (min-width: 700px){
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -16,20 +17,26 @@ const StyledWrapper = Styled.div`
   @media (min-width: 1600px) {
     grid-template-columns: repeat(5, 1fr);
   }
+
+
+
 `;
 
 const StyledItemCont = Styled.div`
   background-color: #666;
-  width: 90%;\
+  width: 90%;
   justify-self: center;
   text-align: center;
   color: #EBDEBC;
   margin-bottom: 20px;
   padding: 30px 0;
-
+  transition: all 1s;
   &.home {
     align-self: center;
     font-size: 1.4em;
+  }
+  &:hover {
+    width: 93%;
   }
 `;
 

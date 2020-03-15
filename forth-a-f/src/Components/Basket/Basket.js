@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Styled from 'styled-components';
 
 const BasketWrapper = Styled.div`
@@ -78,13 +78,22 @@ const CheckoutTotal = Styled.div`
 
 const ContinueShopping = Styled.button`
   color: #EBDEBC;
+  border: 3px solid #EBDEBC;
+  padding: 10px;
+  background-color: transparent;
+  font-size: 0.8em;
+
+  &:hover {
+    background-color: #EBDEBC;
+    color: #666;
+  }
 `;
 
 
 const Basket = (props) => {
   return (
     <BasketWrapper>
-      <ContinueShopping>Continue Shopping</ContinueShopping>
+      <ContinueShopping onClick={props.contshopclick}>Continue Shopping</ContinueShopping>
       <BasketHeading>Basket</BasketHeading>
       {
         props.basketContent.map(item => {

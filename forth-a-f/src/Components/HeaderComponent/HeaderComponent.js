@@ -92,7 +92,7 @@ const headerComponent = (props) => {
         <StyledBurgerLine className="burger-line middle" />
         <StyledBurgerLine className="burger-line bottom" />
       </StyledBurger>
-      <StyledLogo>Forth Avenue Fragrance</StyledLogo>
+      <StyledLogo onClick={props.homeClick}>Forth Avenue Fragrance</StyledLogo>
       <StyledCartSearch>
         <StyledImage className="search" src={searchIcon} alt="searchButton" height="24px" width="24px" />
         <StyledImage onClick={props.basketClick} src={cart} alt="cart Button" height="24px" width="24px" />
