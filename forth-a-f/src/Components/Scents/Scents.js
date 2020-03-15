@@ -48,13 +48,14 @@ const Scents = (props) => {
   return (
     <StyledWrapper>
       <StyledItemCont className="home" onClick={props.homeClick}>Home</StyledItemCont>
-      {props.scents.productInfo.map((product, index) => {
-        return (
-          <StyledItemCont onClick={props.click} key={product.productCode}>
-            <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
-          </StyledItemCont>
-        )
-      })
+      {
+        props.scents.map((product, index) => {
+          return (
+            <StyledItemCont onClick={props.click} key={product.productCode}>
+              <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
+            </StyledItemCont>
+          )
+        })
       }
     </StyledWrapper>
   );

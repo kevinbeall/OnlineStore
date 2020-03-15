@@ -28,6 +28,7 @@ function App() {
   const [currentBasket, setBasket] = useState([]);
   const [currentVariation, setVariation] = useState('');
   const [currentTotal, setTotal] = useState(0);
+  const [stateProducts, setProducts] = useState(Products.productInfo)
   const buttonText = "Add to Basket";
 
   useEffect(() => {
@@ -253,17 +254,35 @@ function App() {
     setTotal(total);
   }
 
+  const handleSearch = (event) => {
+    const searchValue = event.currentTarget.value;
+    const regex = new RegExp((searchValue), 'gi')
+    console.log(Products.productInfo.filter(item => item.productName.match(regex)))
+    if (searchValue === null) {
+      const home = document.querySelector('.homeContent');
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.add('hidden'));
+      home.classList.remove('hidden');
+    } else {
+      const scents = document.querySelector('.scentsContent');
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.add('hidden'));
+      scents.classList.remove('hidden');
+      setProducts(Products.productInfo.filter(item => item.productName.match(regex)));
+    }
+  }
+
   return (
     <div className="App">
       <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} homeClick={handleHomeClick} />
-      <NavbarDark click={handleNavClick} categories={['Home', 'Scents', 'Gift Boxes']} />
+      <NavbarDark searchChanged={handleSearch} click={handleNavClick} categories={['Home', 'Scents', 'Gift Boxes']} />
       <div className="page homeContent">
         <ImageCarousel />
         <ProductGroupWrapper handleScentClick={handleProductGroupScentClick} handleGiftClick={handleProductGroupGiftClick} />
         <SocialComponent />
       </div>
       <div className="page scentsContent hidden">
-        <Scents homeClick={handleHomeClick} click={handleScentClick} scents={Products} />
+        <Scents homeClick={handleHomeClick} click={handleScentClick} scents={stateProducts} />
       </div>
       <div className="page giftboxContent hidden">
         <GiftBox addToBasketClick={addToBasket} products={Products} buttonText={buttonText} goToBasketClick={handleBasketClick} backClick={giftToHome} click={handleVariation} />
