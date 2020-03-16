@@ -44,17 +44,31 @@ const StyledImage = Styled.img`
   width: 90%;
 `;
 
+const StyledGiftBoxHead = Styled.h5`
+  margin: 0;
+`;
+
 const Scents = (props) => {
   return (
     <StyledWrapper>
       <StyledItemCont className="home" onClick={props.homeClick}>Home</StyledItemCont>
       {
         props.scents.map((product, index) => {
-          return (
-            <StyledItemCont onClick={props.click} key={product.productCode}>
-              <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
-            </StyledItemCont>
-          )
+          if (product.productVariation !== 'Gift Box') {
+            return (
+              <StyledItemCont onClick={props.click} key={product.productCode}>
+                <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
+              </StyledItemCont>
+            )
+          }
+          //  else {
+          //   return (
+          //     <StyledItemCont onClick={props.click} key={product.productCode}>
+          //       <StyledGiftBoxHead>{product.productName}</StyledGiftBoxHead>
+          //       <StyledImage src={require(`../../Assets/ProductImage/${product.image}`)} alt={`${product.image}`} />
+          //     </StyledItemCont>
+          //   )
+          // }
         })
       }
     </StyledWrapper>

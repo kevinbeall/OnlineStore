@@ -57,14 +57,15 @@ const FooterComponent = (props) => {
       <StyledSection>
         <h3>USEFUL LINKS</h3>
         <StyledList>
-          <StyledListItem><StyledLink>About Us</StyledLink></StyledListItem>
-          <StyledListItem><StyledLink>Shipping Policy</StyledLink></StyledListItem>
-          <StyledListItem><StyledLink>Refund Policy</StyledLink></StyledListItem>
-          <StyledListItem><StyledLink>Privacy Policy</StyledLink></StyledListItem>
-          <StyledListItem><StyledLink>Terms of Service</StyledLink></StyledListItem>
+          <StyledListItem onClick={props.clicked}><StyledLink>About Us</StyledLink></StyledListItem>
+          <StyledListItem onClick={props.clicked}><StyledLink>Shipping Policy</StyledLink></StyledListItem>
+          <StyledListItem onClick={props.clicked}><StyledLink>Refund Policy</StyledLink></StyledListItem>
+          <StyledListItem onClick={props.clicked}><StyledLink>Privacy Policy</StyledLink></StyledListItem>
+          <StyledListItem onClick={props.clicked}><StyledLink>Terms of Service</StyledLink></StyledListItem>
         </StyledList>
       </StyledSection>
       <StyledCopySec>&copy; 2020 Forth Avenue Fragrance</StyledCopySec>
+      <StyledCopySec>Website by Kevin Beall. kevinbealldev@gmail.com</StyledCopySec>
     </StyledWrapper >
   );
 }

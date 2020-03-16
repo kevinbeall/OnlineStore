@@ -4,6 +4,7 @@ import Styled from 'styled-components';
 const BasketWrapper = Styled.div`
   background-color: #666;
   padding: 30px;
+  min-height: 220px;
 `;
 
 const BasketHeading = Styled.h3`

@@ -11,16 +11,9 @@ import Scents from './Components/Scents/Scents';
 import GiftBox from './Components/GiftBoxComponent/Giftbox'
 import Product from './Components/Product/Product';
 import Basket from './Components/Basket/Basket';
+import UsefulLinks from './Components/UsefulLinks/UsefulLinks';
 
 
-const handleBurgerClick = () => {
-  const burgerLines = document.querySelectorAll('.burger-line');
-  const smallNav = document.querySelector('.small-nav');
-  smallNav.classList.toggle('open');
-  burgerLines.forEach(line => {
-    line.classList.toggle('selected');
-  })
-}
 
 function App() {
   const [currentImage, setImage] = useState('BlackOpium.jpg');
@@ -28,13 +21,19 @@ function App() {
   const [currentBasket, setBasket] = useState([]);
   const [currentVariation, setVariation] = useState('');
   const [currentTotal, setTotal] = useState(0);
-  const [stateProducts, setProducts] = useState(Products.productInfo)
+  const [stateProducts, setProducts] = useState(Products.productInfo);
   const buttonText = "Add to Basket";
+  const [usefulTitle, setUsefulTitle] = useState([]);
+  const [usefulContent, setUsefulContent] = useState([]);
 
   window.addEventListener('keypress', (e) => {
     if (e.keyCode === 13) {
       document.querySelector('.small-nav').classList.remove('open');
       document.querySelector('.searchBar').value = '';
+      const burgerLines = document.querySelectorAll('.burger-line');
+      burgerLines.forEach(line => {
+        line.classList.toggle('selected');
+      })
     }
   })
 
@@ -108,7 +107,9 @@ function App() {
     const scentContent = document.querySelector('.scentsContent');
     const basket = document.querySelector('.basketContent');
     const target = document.querySelector('.productContent');
+    const useful = document.querySelector('.usefulLinksContent');
     cleanup();
+    useful.classList.add('hidden');
     target.classList.add('hidden');
     basket.classList.add('hidden');
     home.classList.remove('hidden');
@@ -149,6 +150,7 @@ function App() {
     const basketbtn = document.querySelectorAll('.addToBasket');
     const priceEl = document.querySelectorAll('.price');
     const gtb = document.querySelectorAll('.gtb');
+    setProducts(Products.productInfo);
     gtb.forEach(el => el.classList.add('hidden'));
     priceEl.forEach(el => el.classList.add('hidden'));
     basketbtn.forEach(btn => {
@@ -169,6 +171,15 @@ function App() {
     })
     basket.classList.remove('hidden');
     window.scrollTo(0, 0);
+  }
+
+  const handleBurgerClick = () => {
+    const burgerLines = document.querySelectorAll('.burger-line');
+    const smallNav = document.querySelector('.small-nav');
+    smallNav.classList.toggle('open');
+    burgerLines.forEach(line => {
+      line.classList.toggle('selected');
+    })
   }
 
   const handleNavClick = (event) => {
@@ -279,6 +290,23 @@ function App() {
     }
   }
 
+  const handleUsefulLinkClick = event => {
+    const pages = document.querySelectorAll('.page');
+    const usefulLinksSec = document.querySelector('.usefulLinksContent');
+    pages.forEach(page => {
+      page.classList.add('hidden');
+    })
+    usefulLinksSec.classList.remove('hidden');
+    const selected = event.currentTarget.firstElementChild.innerHTML;
+    Products.UsefulLinks.forEach(link => {
+      if (selected === link.pageName) {
+        setUsefulTitle(link.pageName)
+        setUsefulContent(link.pageContent)
+      }
+    })
+    window.scrollTo(0, 0);
+  }
+
   return (
     <div className="App">
       <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} homeClick={handleHomeClick} />
@@ -300,7 +328,10 @@ function App() {
       <div className="page basketContent hidden">
         <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} remove={handleBasketRemove} />
       </div>
-      <FooterComponent />
+      <div className="page usefulLinksContent hidden">
+        <UsefulLinks home={handleHomeClick} title={usefulTitle} content={usefulContent} />
+      </div>
+      <FooterComponent clicked={handleUsefulLinkClick} />
     </div>
   );
 }
