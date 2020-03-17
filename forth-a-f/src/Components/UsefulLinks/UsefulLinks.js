@@ -5,6 +5,10 @@ const StyledWrapper = Styled.div`
   background-color: #666;
   padding: 15px;
   color: #EBDEBC;
+
+  @media(min-width: 700px){
+    padding: 50px 10%;
+  }
 `;
 
 const StyledHome = Styled.button`

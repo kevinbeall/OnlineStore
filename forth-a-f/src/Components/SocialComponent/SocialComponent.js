@@ -58,7 +58,7 @@ const SocialComponent = (props) => {
       <StyledGridWrapper>
         <StyledSection>
           <InstagramEmbed
-            url='https://www.instagram.com/p/B9b3IOWAJLV/'
+            url='https://www.instagram.com/p/B9zfcDfHowh/'
             maxWidth={300}
             hideCaption={false}
             containerTagName='div'
