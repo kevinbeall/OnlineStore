@@ -45,6 +45,18 @@ const StyledListItem = Styled.li`
 
 const StyledCopySec = Styled.p`
   text-align: center;
+  &.websiteBy {
+    font-size: 0.7em;
+  }
+
+  &.websiteBy a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const FooterComponent = (props) => {
@@ -65,7 +77,7 @@ const FooterComponent = (props) => {
         </StyledList>
       </StyledSection>
       <StyledCopySec>&copy; 2020 Forth Avenue Fragrance</StyledCopySec>
-      <StyledCopySec>Website by Kevin Beall. kevinbealldev@gmail.com</StyledCopySec>
+      <StyledCopySec className="websiteBy">Website by Kevin Beall. <a href="mailto:kevinbealldev@gmail.com">kevinbealldev@gmail.com</a></StyledCopySec>
     </StyledWrapper >
   );
 }

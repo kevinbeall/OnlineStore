@@ -7,16 +7,44 @@ const StyledWrapper = Styled.div`
   display: grid;
   grid-tempate-columns: 1fr;
   color: #EBDEBC;
+
+  @media(min-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 30px;
+  }
 `;
 
 const StyledImage = Styled.img`
   width: 80vw;
   display: block;
   margin: auto;
+
+  @media(min-width: 700px) {
+    width: 40vw;
+    grid-column-start: 1;
+  }
 `;
 
 const StyledButtonGroup = Styled.div`
   margin: auto;
+  @media(min-width: 700px) {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    margin-top: 60%;
+    font-size: 1.2em;
+  }
+
+  @media(min-width: 900px) {
+    font-size: 1.5em;
+  }
+
+  @media(min-width: 1100px) {
+    font-size: 1.8em;
+  }
+
+  @media(min-width: 1300px) {
+    font-size: 2.2em;
+  }
 `;
 
 const StyledButton = Styled.button`
@@ -45,6 +73,10 @@ const StyledButton = Styled.button`
   &.addToBasket {
     transitions: all 1s;
 
+    @media(min-width: 700px) {
+      font-size: 1.3em;
+    }
+
     &.added {
       background-color: green;
     }
@@ -53,6 +85,10 @@ const StyledButton = Styled.button`
   &.gtb {
     background-color: #EBDEBC;
     color: #666;
+
+    @media(min-width: 700px) {
+      font-size: 1.3em;
+    }
   }
 
   &.hidden {
@@ -66,6 +102,11 @@ const StyledButton = Styled.button`
 
 const StyledPricing = Styled.p`
   font-size: 2em;
+
+  @media(min-width: 700px) {
+    margin-left: 50px;
+    font-size: 2.5em;
+  }
 `;
 
 const StyledBack = Styled.button`
@@ -87,7 +128,44 @@ const StyledProdHead = Styled.h3`
   margin: 20px 0 20px 0;
   padding: 0;
   justify-self: center;
+
+  @media(min-width: 700px) {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    margin-top: 50%;
+    font-size: 1.5em;
+  }
+
+  @media(min-width: 1100px) {
+    font-size: 1.8em;
+  }
+
+  @media(min-width: 1300px) {
+    font-size: 2.2em;
+  }
 `;
+
+const StyledDesc = Styled.p`
+@media(min-width: 700px) {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  font-size: 1.3em;
+}
+
+@media(min-width: 1100px) {
+  font-size: 1.7em;
+}
+
+@media(min-width: 1300px) {
+  font-size: 2.2em;
+}
+`;
+
+const StyledBasketButtons = Styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+`;
+
 
 const Product = (props) => {
   const prodObj = props.products.productInfo.find(element => element.image === props.image)
@@ -96,7 +174,7 @@ const Product = (props) => {
     <StyledWrapper>
       <StyledBack onClick={props.backClick}>Back</StyledBack>
       <StyledImage src={require(`../../Assets/ProductImage/${props.image}`)} />
-      <p>{prodObj.productDesc}</p>
+      <StyledDesc>{prodObj.productDesc}</StyledDesc>
       {/* <select className="test">
         {prodObj.productVariation.map(variation => {
           return (
@@ -111,8 +189,10 @@ const Product = (props) => {
         <StyledButton onClick={props.click} className="last variation-button" value="sample" type="button">Sample</StyledButton>
       </StyledButtonGroup>
       <StyledPricing className="price hidden">Price: £{(props.price / 100).toFixed(2)}</StyledPricing>
-      <StyledButton className="addToBasket hidden" onClick={() => props.addToBasketClick(prodObj)}>{props.buttonText}</StyledButton>
-      <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
+      <StyledBasketButtons>
+        <StyledButton className="addToBasket hidden" onClick={() => props.addToBasketClick(prodObj)}>{props.buttonText}</StyledButton>
+        <StyledButton onClick={props.goToBasketClick} className="gtb hidden">Go To Basket</StyledButton>
+      </StyledBasketButtons>
     </StyledWrapper>
   );
 }
