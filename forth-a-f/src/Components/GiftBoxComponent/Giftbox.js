@@ -13,6 +13,7 @@ const StyledImage = Styled.img`
   width: 80vw;
   display: block;
   margin: auto;
+  max-width: 600px;
 `;
 
 const StyledButtonGroup = Styled.div`
@@ -27,6 +28,10 @@ const StyledButton = Styled.button`
   color: #EBDEBC;
   font-weight: bold;
   transition: all 0.5s;
+
+  @media(min-width: 700px){
+    font-size: 1.4em;
+  }
 
 
   &.selected {
@@ -83,22 +88,58 @@ const StyledIncludedSection = Styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-bottom: 10px;
+
+  @media(min-width: 1200px){
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const StyledIncludedImage = Styled.img`
   height: 80px;
   justify-self: center;
   align-self: center;
+  @media(min-width: 700px){
+    height: 130px;
+  }
 `;
 
 const StyledInfo = Styled.div`
   align-self: center;
+  @media(min-width: 700px){
+    font-size: 1.4em;
+  }
 `;
 
 const StyledProdHead = Styled.h3`
   margin: 20px 0 0 0;
   padding: 0;
   justify-self: center;
+  @media(min-width: 700px){
+    font-size: 1.4em;
+  }
+`;
+
+const StyledDesc = Styled.p`
+  margin: 30px auto;
+  @media(min-width: 700px){
+    font-size: 1.5em;
+    text-align: center;
+  }
+`;
+
+const StyledInc = Styled.p`
+text-align: left;
+padding: 30px;
+@media(min-width: 700px){
+    font-size: 1.4em;
+  }
+`;
+
+const StyledAdd = Styled.p`
+  @media(min-width: 700px){
+    font-size: 1.5em;
+    text-align: center;
+  }
 `;
 
 const GiftBox = (props) => {
@@ -118,8 +159,8 @@ const GiftBox = (props) => {
       <StyledBack onClick={props.backClick}>Back</StyledBack>
       <StyledHeading>{currentGiftBox.productName}</StyledHeading>
       <StyledImage src={require(`../../Assets/ProductImage/${currentGiftBox.image}`)} />
-      <p>{currentGiftBox.productDesc.descHead}</p>
-      <p>Includes:</p>
+      <StyledDesc>{currentGiftBox.productDesc.descHead}</StyledDesc>
+      <StyledInc>Includes:</StyledInc>
       {
         currentGiftBox.productDesc.descIncludes.map(item => {
           return (
@@ -133,7 +174,7 @@ const GiftBox = (props) => {
           );
         })
       }
-      {currentGiftBox.productAdditional}
+      <StyledAdd>{currentGiftBox.productAdditional}</StyledAdd>
       <StyledProdHead>Select Product</StyledProdHead>
       <StyledButtonGroup>
         <StyledButton className="variation-button" value="giftBox" onClick={props.click}>GiftBox</StyledButton>
