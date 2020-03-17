@@ -122,6 +122,13 @@ margin-bottom: 40px;
   background-color: #EBDEBC;
   color: #666;
 }
+
+@media(min-width: 1200px){
+  font-size: 1em;
+  padding: 15px;
+  height: 55px;
+  width: 120px;
+}
 `;
 
 const StyledProdHead = Styled.h3`

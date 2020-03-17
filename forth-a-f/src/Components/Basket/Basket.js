@@ -11,6 +11,10 @@ const BasketHeading = Styled.h3`
   color: #EBDEBC;
   text-align: center;
   font-size: 1.6em;
+
+  @media(min-width: 700px){
+    font-size: 2em;
+  }
 `;
 
 const StyledBasketItem = Styled.div`
@@ -19,12 +23,24 @@ const StyledBasketItem = Styled.div`
   padding-bottom: 10px;
   padding-top: 10px;
   border-bottom: 2px solid black;
+
+  @media(min-width: 700px){
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media(min-width: 1000px){
+    font-size: 1.7em;
+  }
 `;
 
 const StyledItemImage = Styled.img`
   height: 120px;
   display: block;
   margin: auto;
+
+  @media(min-width: 1000px){
+    height: 200px;
+  }
 `;
 
 const StyledItemInfo = Styled.div`
@@ -47,12 +63,22 @@ const StyledInfo = Styled.p`
 const StyledRemove = Styled.button`
   float: right;
   font-size: .9em;
+  background-color: transparent;
+  border: none;
+
+  &:focus{
+    outline: none;
+  }
 `;
 
 const StyledTotal = Styled.span`
   color: #EBDEBC;
   justify-self: center;
   align-self: center;
+
+  @media(min-width: 700px){
+    font-size: 2em;
+  }
 `;
 
 const StyledCheckoutButton = Styled.button`
@@ -62,9 +88,18 @@ const StyledCheckoutButton = Styled.button`
   padding: 5px;
   border: 1px solid #EBDEBC;
   font-size: 1em;
+  max-width: 400px;
 
   &:focus {
     outline: none;
+  }
+
+  @media(min-width: 700px){
+    font-size: 1.4em;
+  }
+
+  @media(min-width: 1200px){
+    font-size: 1.8em;
   }
 `;
 
@@ -75,6 +110,9 @@ const CheckoutTotal = Styled.div`
   border-bottom: 2px dashed black;
   padding: 10px;
   margin-top: 10px;
+  @media(min-width: 700px){
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const ContinueShopping = Styled.button`
@@ -87,6 +125,20 @@ const ContinueShopping = Styled.button`
   &:hover {
     background-color: #EBDEBC;
     color: #666;
+  }
+
+  @media(min-width: 1200px){
+    font-size: 1em;
+    padding: 15px;
+  }
+`;
+
+const StyledTotalTitle = Styled.h3`
+  color: #EBDEBC;
+
+  @media(min-width: 700px){
+    font-size: 2em;
+    padding-left: 50px;
   }
 `;
 
@@ -112,6 +164,7 @@ const Basket = (props) => {
           );
         })
       }
+      <StyledTotalTitle>Total</StyledTotalTitle>
       <CheckoutTotal>
         <StyledTotal>£{(props.total / 100).toFixed(2)}</StyledTotal>
         <StyledCheckoutButton>Checkout Now</StyledCheckoutButton>
