@@ -73,6 +73,8 @@ function App() {
     const target = document.querySelector('.productContent');
     const basketButton = document.querySelector('.addToBasket');
     const goToBasket = document.querySelector('.gtb');
+    const giftBox = document.querySelector('.giftboxContent');
+    giftBox.classList.add('hidden');
     basketButton.innerHTML = 'Add To Basket';
     goToBasket.classList.add('hidden');
     scent.classList.add('hidden');
@@ -85,6 +87,8 @@ function App() {
     const target = document.querySelector('.scentsContent');
     const basket = document.querySelector('.basketContent');
     const product = document.querySelector('.productContent');
+    const giftBox = document.querySelector('.giftboxContent');
+    giftBox.classList.add('hidden');
     product.classList.add('hidden');
     basket.classList.add('hidden');
     home.classList.add('hidden');
@@ -108,7 +112,9 @@ function App() {
     const basket = document.querySelector('.basketContent');
     const target = document.querySelector('.productContent');
     const useful = document.querySelector('.usefulLinksContent');
+    const giftBox = document.querySelector('.giftboxContent');
     cleanup();
+    giftBox.classList.add('hidden');
     useful.classList.add('hidden');
     target.classList.add('hidden');
     basket.classList.add('hidden');
