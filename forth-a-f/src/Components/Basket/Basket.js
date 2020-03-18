@@ -142,33 +142,51 @@ const StyledTotalTitle = Styled.h3`
   }
 `;
 
+const StyledCheckoutComplete = Styled.p`
+  color: #EBDEBC;
+  text-align: center;
+  font-size: 3em;
+  padding: 200px 0;
+`;
+
+const StyledBasket = Styled.div`
+  &.hidden {
+    display: none;
+  }
+`;
+
 
 const Basket = (props) => {
   return (
     <BasketWrapper>
-      <ContinueShopping onClick={props.contshopclick}>Continue Shopping</ContinueShopping>
-      <BasketHeading>Basket</BasketHeading>
-      {props.basketContent === undefined ?
-        <p>empty</p>
-        :
-        props.basketContent.map(item => {
-          return (
-            <StyledBasketItem className={item.id}>
-              <StyledItemImage src={require(`../../Assets/ProductImage/${item.image}`)} height='100px' />
-              <StyledItemInfo>
-                <StyledItemTitle>{item.productName}</StyledItemTitle>
-                <StyledInfo>{item.currentVariation} - £{(item.selectedPrice / 100).toFixed(2)}</StyledInfo>
-                <StyledRemove onClick={props.remove}>remove</StyledRemove>
-              </StyledItemInfo>
-            </StyledBasketItem>
-          );
-        })
-      }
-      <StyledTotalTitle>Total</StyledTotalTitle>
-      <CheckoutTotal>
-        <StyledTotal>£{(props.total / 100).toFixed(2)}</StyledTotal>
-        <StyledCheckoutButton>Checkout Now</StyledCheckoutButton>
-      </CheckoutTotal>
+      <StyledBasket className="checkoutDisplay">
+        <ContinueShopping onClick={props.contshopclick}>Continue Shopping</ContinueShopping>
+        <BasketHeading>Basket</BasketHeading>
+        {props.basketContent === undefined ?
+          <p>empty</p>
+          :
+          props.basketContent.map(item => {
+            return (
+              <StyledBasketItem className={item.id}>
+                <StyledItemImage src={require(`../../Assets/ProductImage/${item.image}`)} height='100px' />
+                <StyledItemInfo>
+                  <StyledItemTitle>{item.productName}</StyledItemTitle>
+                  <StyledInfo>{item.currentVariation} - £{(item.selectedPrice / 100).toFixed(2)}</StyledInfo>
+                  <StyledRemove onClick={props.remove}>remove</StyledRemove>
+                </StyledItemInfo>
+              </StyledBasketItem>
+            );
+          })
+        }
+        <StyledTotalTitle>Total</StyledTotalTitle>
+        <CheckoutTotal>
+          <StyledTotal>£{(props.total / 100).toFixed(2)}</StyledTotal>
+          <StyledCheckoutButton onClick={props.checkoutComplete}>Checkout Now</StyledCheckoutButton>
+        </CheckoutTotal>
+      </StyledBasket>
+      <StyledBasket className="checkoutComplete hidden">
+        <StyledCheckoutComplete>Thank you for your order.</StyledCheckoutComplete>
+      </StyledBasket>
     </BasketWrapper>
   );
 }

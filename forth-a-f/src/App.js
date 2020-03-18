@@ -74,6 +74,7 @@ function App() {
     const basketButton = document.querySelector('.addToBasket');
     const goToBasket = document.querySelector('.gtb');
     const giftBox = document.querySelector('.giftboxContent');
+    cleanup();
     giftBox.classList.add('hidden');
     basketButton.innerHTML = 'Add To Basket';
     goToBasket.classList.add('hidden');
@@ -88,6 +89,7 @@ function App() {
     const basket = document.querySelector('.basketContent');
     const product = document.querySelector('.productContent');
     const giftBox = document.querySelector('.giftboxContent');
+    cleanup();
     giftBox.classList.add('hidden');
     product.classList.add('hidden');
     basket.classList.add('hidden');
@@ -192,6 +194,7 @@ function App() {
     // add active to clikced item which then increases the opacity of that item.
     document.querySelector('.nav-list .active').classList.remove('active')
     event.target.classList.add('active');
+    cleanup();
     //check the button clicked and call to function to render content needed
     if (event.currentTarget.innerHTML === 'HOME') {
       handleHomeClick();
@@ -313,6 +316,22 @@ function App() {
     window.scrollTo(0, 0);
   }
 
+  const handleCheckout = () => {
+    const checkout = document.querySelector('.checkoutDisplay');
+    const complete = document.querySelector('.checkoutComplete');
+
+    checkout.classList.add('hidden');
+    complete.classList.remove('hidden');
+
+    setTimeout(() => {
+      checkout.classList.remove('hidden');
+      complete.classList.add('hidden');
+      setBasket([]);
+      setTotal(0);
+      handleHomeClick();
+    }, 3000);
+  }
+
   return (
     <div className="App">
       <HeaderComponent basketClick={handleBasketClick} clicked={handleBurgerClick} homeClick={handleHomeClick} />
@@ -332,7 +351,7 @@ function App() {
         <Product buttonText={buttonText} price={selectedPrice} backClick={prodToScents} click={handleVariation} products={Products} image={currentImage} addToBasketClick={addToBasket} goToBasketClick={handleBasketClick} />
       </div>
       <div className="page basketContent hidden">
-        <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} remove={handleBasketRemove} />
+        <Basket total={currentTotal} basketContent={currentBasket} contshopclick={continueShopping} remove={handleBasketRemove} checkoutComplete={handleCheckout} />
       </div>
       <div className="page usefulLinksContent hidden">
         <UsefulLinks home={handleHomeClick} title={usefulTitle} content={usefulContent} />
