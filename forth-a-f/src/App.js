@@ -16,7 +16,7 @@ import UsefulLinks from './Components/UsefulLinks/UsefulLinks';
 
 
 function App() {
-  const [currentImage, setImage] = useState('BlackOpium.jpg');
+  const [currentImage, setImage] = useState('BlackOpium.jpeg');
   const [selectedPrice, setPrice] = useState(Products.pricing[0].snapBar);
   const [currentBasket, setBasket] = useState([]);
   const [currentVariation, setVariation] = useState('');

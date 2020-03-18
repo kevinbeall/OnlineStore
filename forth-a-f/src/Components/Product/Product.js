@@ -175,6 +175,7 @@ const StyledBasketButtons = Styled.div`
 
 
 const Product = (props) => {
+  console.log(props);
   const prodObj = props.products.productInfo.find(element => element.image === props.image)
 
   return (

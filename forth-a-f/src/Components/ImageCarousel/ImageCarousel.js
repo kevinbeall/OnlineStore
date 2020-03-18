@@ -68,14 +68,14 @@ const StyledDesc = Styled.h4`
 const ImageCarousel = (props) => {
   return (
     <StyledWrapper>
-      <StyledDesc className='carousel-text active'>Slide 1</StyledDesc>
+      <StyledDesc className='carousel-text active'>Snap Bars</StyledDesc>
       <StyledImage className="carousel-image active carousel-1" src={require("../../Assets/CarouselImages/DSC00756.JPG")} />
-      <StyledDesc className='carousel-text'>Slide 2</StyledDesc>
+      <StyledDesc className='carousel-text'>Individuals</StyledDesc>
       <StyledImage className="carousel-image carousel-2" src={require("../../Assets/CarouselImages/DSC00764.JPG")} />
-      <StyledDesc className='carousel-text'>Slide 3</StyledDesc>
+      <StyledDesc className='carousel-text'>Select your Fragrance!</StyledDesc>
       <StyledImage className="carousel-image carousel-3" src={require("../../Assets/CarouselImages/DSC00767.JPG")} />
-      <StyledDesc className='carousel-text'>Slide 4</StyledDesc>
-      <StyledImage className="carousel-image last carousel-4" src={require("../../Assets/CarouselImages/MothersDayBox.JPG")} />
+      <StyledDesc className='carousel-text'>£15 Mothers Day Giftbox</StyledDesc>
+      <StyledImage className="carousel-image last carousel-4" src={require("../../Assets/CarouselImages/MothersDayBox.jpg")} />
     </StyledWrapper>
   );
   //1.get images and store in an array

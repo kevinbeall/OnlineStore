@@ -50,7 +50,7 @@ const ProductGroup = (props) => {
         <StyledWrapper onClick={props.click} className={props.title}>
             <StyledProdHeading>{props.title}</StyledProdHeading>
             <StyledSubHeading>View All</StyledSubHeading>
-            <StyledImage src={require(`../../Assets/ProductGroup/${props.img}.JPG`)} alt={`Image of ${props.img}`} />
+            <StyledImage src={require(`../../Assets/ProductGroup/${props.img}.jpg`)} alt={`Image of ${props.img}`} />
         </StyledWrapper>
     );
 }
